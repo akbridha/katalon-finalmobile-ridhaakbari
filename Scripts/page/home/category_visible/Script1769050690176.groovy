@@ -17,3 +17,20 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
+// // Assert text sama.. statis dulu. nanti dibuat dinamis
+// Mobile.verifyElementVisible(findTestObject('Object Repository/home/text_category_laptop'), 0)
+// Mobile.verifyElementVisible(findTestObject('Object Repository/home/text_category_headphones'), 0)
+// Mobile.verifyElementVisible(findTestObject('Object Repository/home/text_category_tablets'), 0)
+// Mobile.verifyElementVisible(findTestObject('Object Repository/home/text_category_speakers'), 0)
+// Mobile.verifyElementVisible(findTestObject('Object Repository/home/text_category_mice'), 0)
+
+
+// Daftar kategori masukkan dalam array
+// String[] categories = ['LAPTOPS', 'HEADPHONES', 'TABLETS', 'SPEAKERS', 'MICE']
+String[] categories = categories ?: ['LAPTOPS', 'HEADPHONES', 'TABLETS', 'SPEAKERS', 'MICE']
+
+// Looping untuk verifikasi setiap kategori
+for (String category : categories) {
+	TestObject testObject = findTestObject('Object Repository/home/text_category', ['category': category])
+	Mobile.verifyElementVisible(testObject, 0)
+}

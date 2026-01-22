@@ -21,7 +21,11 @@ import org.openqa.selenium.Keys as Keys
 // Kirim parameter expectedText ke test case home_page_opened
 WebUI.callTestCase(findTestCase('page/home/home_page_opened'), ['expectedText':'Advantage'], FailureHandling.STOP_ON_FAILURE)
 
-WebUI.callTestCase(findTestCase('page/home/category_visible'), [:], FailureHandling.STOP_ON_FAILURE)
+//WebUI.callTestCase(findTestCase('page/home/category_visible'), [:], FailureHandling.STOP_ON_FAILURE)
 
-WebUI.callTestCase(findTestCase('page/home/category_clickable'), [:], FailureHandling.STOP_ON_FAILURE)
+ // Kirim array kategori dari sini supaya seamless
+ String[] categories = ['LAPTOPS', 'HEADPHONES', 'TABLETS', 'SPEAKERS', 'MICE']
+ WebUI.callTestCase(findTestCase('page/home/category_visible'), ['categories': categories], FailureHandling.STOP_ON_FAILURE)
 
+//WebUI.callTestCase(findTestCase('page/home/category_clickable'), [:], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('page/home/category_clickable'),  ['categories': categories], FailureHandling.STOP_ON_FAILURE)
