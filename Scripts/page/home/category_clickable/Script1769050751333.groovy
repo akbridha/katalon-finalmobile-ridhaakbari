@@ -33,9 +33,10 @@ import org.openqa.selenium.Keys as Keys
 String[] categories = categories ?: ['LAPTOPS', 'HEADPHONES', 'TABLETS', 'SPEAKERS', 'MICE']
 
 // Looping untuk verifikasi setiap kategori
-//for (String category : categories) {
-//	TestObject testObject = findTestObject('Object Repository/home/text_category', ['category': category])
-	TestObject testObject = findTestObject('Object Repository/home/text_category', ['category': categories[0]])
+for (String category : categories) {
+	TestObject testObject = findTestObject('Object Repository/home/text_category', ['category': category])
+    // statis untuk test 
+	// TestObject testObject = findTestObject('Object Repository/home/text_category', ['category': categories[0]])
 	Mobile.tap(testObject, 0)
     Mobile.waitForElementPresent(findTestObject('Object Repository/product/text_label_category'), 10)
 // println(Mobile.getText(findTestObject('Object Repository/product/text_label_category'), 0))
@@ -51,10 +52,12 @@ String[] categories = categories ?: ['LAPTOPS', 'HEADPHONES', 'TABLETS', 'SPEAKE
     String cleanedText = actualText.replaceAll(/\s*\(.*\)/, '').toUpperCase()
     println("Text setelah dibersihkan: ${cleanedText}")
     
-    // Bandingkan dengan expected
-    assert cleanedText == categories[0] : "Kategori tidak sesuai. Expected: ${categories[0]}, Found: ${cleanedText}"
+    // statis 
+    // assert cleanedText == categories[0] : "Kategori tidak sesuai. Expected: ${categories[0]}, Found: ${cleanedText}"
+        // Bandingkan dengan expected dari iterator
+    assert cleanedText == category : "Kategori tidak sesuai. Expected: ${category}, Found: ${cleanedText}"
     
   
 
     Mobile.pressBack()
-//}
+}
