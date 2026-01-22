@@ -37,8 +37,41 @@ for (String category : categories) {
 	TestObject testObject = findTestObject('Object Repository/home/text_category', ['category': category])
     // statis untuk test 
 	// TestObject testObject = findTestObject('Object Repository/home/text_category', ['category': categories[0]])
-	Mobile.tap(testObject, 0)
-    Mobile.waitForElementPresent(findTestObject('Object Repository/product/text_label_category'), 10)
+	// Mobile.tap(testObject, 0)
+    // Mobile.waitForElementPresent(findTestObject('Object Repository/product/text_label_category'), 10)
+
+
+
+	// pakai mekanisme cobaulang  tap hingga 3 kali jika element tidak muncul
+	int maxRetries = 3
+	boolean elementFound = false
+	
+	for (int attempt = 1; attempt <= maxRetries; attempt++) {
+		println("Percobaan ke-${attempt} untuk kategori: ${category}")
+		Mobile.tap(testObject, 0)
+		
+		// Cek apakah element muncul dengan try-catch
+		try {
+			Mobile.waitForElementPresent(findTestObject('Object Repository/product/text_label_category'), 5)
+			println("Element berhasil ditemukan pada percobaan ke-${attempt}")
+			elementFound = true
+			break
+		} catch (Exception e) {
+			println("Element tidak ditemukan pada percobaan ke-${attempt}")
+			if (attempt < maxRetries) {
+				Mobile.pressBack() // Kembali ke halaman sebelumnya untuk retry
+				Mobile.delay(1) // Tunggu sebentar sebelum retry
+			}
+		}
+	}
+	
+	// Jika setelah 3 percobaan masih gagal, fail test
+	if (!elementFound) {
+		assert false : "Gagal menemukan element setelah ${maxRetries} percobaan untuk kategori: ${category}"
+	}
+
+
+
 // println(Mobile.getText(findTestObject('Object Repository/product/text_label_category'), 0))
 //     assert Mobile.getText(findTestObject('Object Repository/product/text_label_category'), 0) == categories[0] : "Kategori tidak sesuai. Ditemukan: ${Mobile.getText(findTestObject('Object Repository/product/text_label_category'), 0)}"
 
