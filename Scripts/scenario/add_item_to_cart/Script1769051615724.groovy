@@ -17,3 +17,11 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
+// WebUI.callTestCase(findTestCase('page/home/home_page_opened'), [:], FailureHandling.STOP_ON_FAILURE)
+// Kirim parameter expectedText ke test case home_page_opened
+WebUI.callTestCase(findTestCase('page/home/home_page_opened'), ['expectedText':'Advantage'], FailureHandling.STOP_ON_FAILURE)
+
+WebUI.callTestCase(findTestCase('page/home/category_visible'), [:], FailureHandling.STOP_ON_FAILURE)
+
+WebUI.callTestCase(findTestCase('page/home/category_clickable'), [:], FailureHandling.STOP_ON_FAILURE)
+

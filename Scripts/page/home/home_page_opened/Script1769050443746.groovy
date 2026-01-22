@@ -17,3 +17,17 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
+Mobile.startApplication('C:/Users/Lenovo/Downloads/Advantage+demo+3.2.apk', false)
+
+Mobile.verifyElementVisible(findTestObject('Object Repository/home/text_title_app'), 0)
+
+// Ambil text dari element
+// Assert text sama.. statis dulu. nanti dibuat dinamis
+String actualText = Mobile.getText(findTestObject('Object Repository/home/text_title_app'), 0)
+
+// String expectedText = 'Advantage' // Ganti sesuai kebutuhan
+
+String expectedText = expectedText ?: 'Advantage' // fallback jaga jaga
+
+
+assert actualText == expectedText : "Text tidak sesuai. Ditemukan: ${actualText}"
