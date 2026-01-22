@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>home_page_opened</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>f8cfa93b-fbb6-40fa-a2d6-bc49176065a1</testCaseGuid>
+</TestCaseEntity>
